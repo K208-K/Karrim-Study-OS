@@ -1,7 +1,7 @@
 'use client';
 
 import { useData } from '@/lib/data-context';
-import { useQuickAdd } from '@/components/layout/quick-add-provider';
+
 import { getSubjectProgress } from '@/lib/analytics';
 import { formatRelativeTime } from '@/lib/date';
 import { Progress } from '@/components/ui/progress';
@@ -41,7 +41,7 @@ import type { Subject } from '@/types';
 
 export default function SubjectsPage() {
   const { data, deleteSubject } = useData();
-  const { openQuickAdd } = useQuickAdd();
+  
   const { toast } = useToast();
   const [addOpen, setAddOpen] = useState(false);
   const [editSubject, setEditSubject] = useState<Subject | null>(null);
