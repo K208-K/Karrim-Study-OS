@@ -85,15 +85,7 @@ export default function SubjectDetailPage() {
     subjectId
   );
 
-  /*
-   * IMPORTANT:
-   * Lucide icons are ForwardRefExoticComponents.
-   * Do NOT cast Icons directly to:
-   * Record<string, React.ComponentType<...>>
-   *
-   * The unknown intermediate cast avoids the Vercel
-   * TypeScript error.
-   */
+
   const IconComp = subject
     ? (
         (Icons as unknown as Record<string, LucideIcon>)[
