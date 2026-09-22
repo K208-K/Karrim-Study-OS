@@ -34,6 +34,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreVertical, Pencil, Trash2, Plus, ArrowLeft, Check, FileText, CheckSquare } from 'lucide-react';
 import * as Icons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import type { Topic } from '@/types';
 
@@ -58,8 +59,9 @@ export default function SubjectDetailPage() {
   );
 
   const progress = getSubjectProgress(data.tasks, subjectId);
-  const IconComp = subject ? ((Icons as Record<string, React.ComponentType<{ className?: string }>>)[subject.icon] || Icons.BookOpen) : Icons.BookOpen;
-
+  const IconComp = subject
+  ? ((Icons as unknown as Record<string, LucideIcon>)[subject.icon] || Icons.BookOpen)
+  : Icons.BookOpen;
   if (!subject) {
     return (
       <div className="text-center py-20">

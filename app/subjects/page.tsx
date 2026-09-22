@@ -36,6 +36,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/hooks/use-toast';
 import * as Icons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { Subject } from '@/types';
 
 export default function SubjectsPage() {
@@ -74,7 +75,7 @@ export default function SubjectsPage() {
             const progress = getSubjectProgress(data.tasks, subject.id);
             const topicCount = data.topics.filter((t) => t.subjectId === subject.id).length;
             const taskCount = data.tasks.filter((t) => t.subjectId === subject.id).length;
-            const IconComp = (Icons as Record<string, React.ComponentType<{ className?: string }>>)[subject.icon] || Icons.BookOpen;
+            const IconComp = (Icons as unknown as Record<string, LucideIcon>)[subject.icon] || Icons.BookOpen;
 
             return (
               <div

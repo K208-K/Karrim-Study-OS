@@ -18,6 +18,7 @@ import { todayISO } from '@/lib/date';
 
 interface TaskFormProps {
   initial?: Partial<{
+    id: string;
     title: string;
     description: string;
     subjectId: string;
