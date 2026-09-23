@@ -138,7 +138,7 @@ export default function AnalyticsPage() {
                     borderRadius: '8px',
                     fontSize: '12px',
                   }}
-                  formatter={(value: number) => formatDuration(value)}
+                  formatter={(value) => formatDuration(Number(value ?? 0))}
                 />
               </PieChart>
             </ResponsiveContainer>

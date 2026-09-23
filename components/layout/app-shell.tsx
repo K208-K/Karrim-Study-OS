@@ -20,7 +20,12 @@ import {
 import { cn } from '@/lib/utils';
 import { useData } from '@/lib/data-context';
 import { useQuickAdd } from '@/components/layout/quick-add-provider';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -322,8 +327,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <SheetContent
           side="left"
+          aria-describedby={undefined}
           className="w-64 border-r border-border/60 bg-sidebar-background p-0"
         >
+          <SheetTitle className="sr-only">Navigation</SheetTitle>
           <SidebarContent onNav={() => setMobileOpen(false)} />
         </SheetContent>
       </Sheet>
