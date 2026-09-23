@@ -1,3 +1,4 @@
+// @ts-expect-error Next.js processes this stylesheet import at build time.
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+    <head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <DataProvider>
