@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
   BookOpen,
@@ -271,9 +271,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Sparkles className="inline h-3 w-3 text-amber-500" />
 
             Press{' '}
+
             <kbd className="rounded border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[9px] font-semibold">
               Ctrl K
             </kbd>{' '}
+
             to search
           </p>
         </div>
@@ -330,28 +332,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           aria-describedby={undefined}
           className="w-64 border-r border-border/60 bg-sidebar-background p-0"
         >
-          <SheetTitle className="sr-only">Navigation</SheetTitle>
+          <SheetTitle className="sr-only">
+            Navigation
+          </SheetTitle>
+
           <SidebarContent onNav={() => setMobileOpen(false)} />
         </SheetContent>
       </Sheet>
 
       {/* Main Content Area */}
       <main className="flex-1 overflow-y-auto scrollbar-thin">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{
-              duration: 0.2,
-              ease: 'easeOut',
-            }}
-            className="mx-auto max-w-6xl px-4 pb-6 pt-16 md:px-8 md:py-8"
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <div className="mx-auto max-w-6xl px-4 pb-6 pt-16 md:px-8 md:py-8">
+          {children}
+        </div>
       </main>
     </div>
   );
