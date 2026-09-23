@@ -1,4 +1,4 @@
-// @ts-expect-error Next.js processes this stylesheet import at build time.
+
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
@@ -15,6 +15,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-grote
 export const metadata: Metadata = {
   title: 'Karrim Study OS',
   description: 'Your personal study command center',
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
