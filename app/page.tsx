@@ -10,18 +10,17 @@ import {
   getGreeting,
   formatFullDate,
   formatDuration,
-  getDayLabel,
 } from '@/lib/date';
 
 import {
   getTodayProgress,
   getStreak,
   getWeeklyStudyTime,
-  getStreakDays,
 } from '@/lib/analytics';
 
 import { Progress } from '@/components/ui/progress';
 import { TaskItem } from '@/components/tasks/task-item';
+import { WeeklyTasks } from '@/components/dashboard/weekly-tasks';
 
 import {
   Flame,
@@ -86,7 +85,6 @@ export default function DashboardPage() {
   const todayProgress = getTodayProgress(data.tasks);
   const streak = getStreak(data.tasks);
   const weeklyMinutes = getWeeklyStudyTime(data.studySessions);
-  const streakDays = getStreakDays(data.tasks);
 
   // ==========================================
   // TODAY'S TASKS
@@ -389,72 +387,10 @@ export default function DashboardPage() {
       </motion.div>
 
       {/* ==================================================
-          5. STREAK TRACKER
+          5. WEEKLY TASKS
       ================================================== */}
-      <motion.div
-        variants={itemVariants}
-        whileHover={{ y: -2 }}
-        className="
-          rounded-2xl border border-border bg-card/60 backdrop-blur-md p-6
-          shadow-sm transition-all duration-300
-        "
-      >
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2.5">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="p-2 rounded-xl bg-orange-500/10 text-orange-500"
-            >
-              <Flame className="h-5 w-5 fill-orange-500" />
-            </motion.div>
-            <div>
-              <h2 className="font-display text-lg font-bold">
-                {streak} Day Streak
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Keep active daily to build your learning habit
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Streak Days Bar */}
-        <div className="flex gap-2">
-          {streakDays.map((day, idx) => (
-            <motion.div
-              key={day.date}
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ scale: 1.08 }}
-              className="flex flex-col items-center gap-2 flex-1 cursor-pointer"
-            >
-              <div
-                className={`
-                  h-12 w-full rounded-xl transition-all duration-300 relative overflow-hidden
-                  ${
-                    day.active
-                      ? 'bg-gradient-to-t from-orange-600 to-amber-400 shadow-md shadow-orange-500/20'
-                      : 'bg-muted/60 hover:bg-muted'
-                  }
-                `}
-              >
-                {day.active && (
-                  <motion.div
-                    className="absolute inset-0 bg-white/20"
-                    animate={{ opacity: [0, 0.4, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                  />
-                )}
-              </div>
-
-              <span className="text-[11px] font-medium text-muted-foreground">
-                {getDayLabel(day.date)}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+      <motion.div variants={itemVariants}>
+        <WeeklyTasks />
       </motion.div>
     </motion.div>
   );
